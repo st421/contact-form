@@ -1,8 +1,8 @@
 <?php  
 /*
     Plugin Name: Contact Form
-    Plugin URI: http://susanltyler.com/contact-form-plugin/
-    Description: Put contact forms on your WordPress site.
+    Plugin URI: https://github.com/st421/contact-form
+    Description: Put AJAX-enabled contact forms on your WordPress site using easy shortcodes.
     Author: S. Tyler 
     Version: 1.0 
     Author URI: http://susanltyler.com 
@@ -15,10 +15,10 @@ add_action('wp_ajax_nopriv_email_contact','send_email');
 // <----------------------------------------------->
 
 /*
-Javascript/AJAX method called by shortcode that places form on page. Form is returned as string
-so as to be displayed before the_content. $atts should be supplied in the shortcode in the form of 
-email="example@example.com"
-*/
+ * Javascript/AJAX method called by shortcode that places form on page. Form is returned as string
+ * so as to be displayed before the_content. $atts should be supplied in the shortcode in the form of 
+ * email="example@example.com"
+ */
 function submit_email_form($atts) {
 	extract(shortcode_atts(array('to_email' => ''), $atts));
 	$nonce = wp_create_nonce('nonce_1');
@@ -53,8 +53,8 @@ jQuery(document).ready(function(){
 }
 
 /*
-The function that actually sends the email after checking that the message/name/etc. are not empty and that the
-given email is valid.
+ * The function that actually sends the email after checking that the message/name/etc. are not empty and that the
+ * given email is valid.
 */  
 function send_email() {
 	check_ajax_referer('nonce_1');
